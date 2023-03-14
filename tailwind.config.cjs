@@ -17,18 +17,7 @@ module.exports = {
       animation: {
         smoky: 'smoky 0.5s ease-out forwards'
       },
-      keyframes: {
-        smoky: {
-          '0%': {
-            transform: 'scale(1)',
-            opacity: '1'
-          },
-          '100%': {
-            transform: 'scale(10)',
-            opacity: '0'
-          }
-        }
-      },
+
       boxShadow: {
         custom: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
       },

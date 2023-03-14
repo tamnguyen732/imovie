@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { headerNav } from '~/utils/common/general';
 import logo from '../assets/imovie.png';
 
 const Header = () => {
   const [index, setIndex] = useState<number>(0);
-
+  const [isScrolled, setIsScroll] = useState<boolean>(false);
   const handleActiveNav = (index: number) => {
     setIndex(index);
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
-    <div className='cursor-pointer fixed flex justify-between items-center z-50 w-screen'>
-      <div className='w-200 h-auto pt-4 pl-2 flex flex-row justify-start items-center gap-2'>
+    <div
+      className={`cursor-pointer h-24 ${
+        isScrolled ? 'bg-black' : ''
+      } fixed flex justify-between items-center z-50 transition-all w-screen `}
+    >
+      <div className='w-200 h-auto py-4 pl-2 flex flex-row  justify-start items-center gap-2'>
         <img className='w-20 h-20 object-cover' src={logo} alt='' />
         <span className='text-white text-4xl font-bold'>iMovies</span>
       </div>
-      <ul className='text-white flex  gap-10  mr-10 font-bold text-2xl ml-auto justify-end '>
+      <ul className=' hidden text-white md:flex  gap-10  mr-10 font-bold text-2xl ml-auto justify-end '>
         {headerNav.map(({ display, path }, i) => {
           return (
-            <div className='flex flex-col group relative'>
+            <div key={i} className='flex flex-col group relative'>
               <li
                 onClick={() => {
                   handleActiveNav(i);

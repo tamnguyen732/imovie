@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-
 import Header from '~/components/Header';
 import bg from '../assets/bg.jpg';
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
 export default function MainLayout({ children }: Props) {
   return (
     <div
-      className='fixed top-0 left-0 w-full h-full bg-cover bg-center  bg-node-repeat z-0 overflow-scroll'
+      className='w-full h-screen bg-cover bg-center  bg-no-repeat z-0 '
       style={{
         backgroundImage: `url(${bg})`
       }}
