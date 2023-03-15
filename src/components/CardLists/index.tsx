@@ -1,10 +1,13 @@
 import React from 'react';
-import Card from './Card';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper } from 'swiper/react';
+interface CardList<T> {
+  lists: T[];
+  render: (list: T) => React.ReactNode;
+}
 
-const CardList = () => {
+const CardList = <T,>({ lists, render }: CardList<T>) => {
   return (
-    <div className='p-10 '>
+    <div className='w-full'>
       <Swiper
         spaceBetween={5}
         slidesPerView={2}
@@ -25,32 +28,10 @@ const CardList = () => {
             spaceBetween: 20
           }
         }}
-        scrollbar={{ draggable: true }}
       >
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+        {lists?.map((list) => {
+          return <>{render(list)}</>;
+        })}
       </Swiper>
     </div>
   );

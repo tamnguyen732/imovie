@@ -21,7 +21,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className={` rounded-2xl py-2 px-4 ${color} ${textColor}  hover:${hoverTextColor} ${className}`}
+      className={` cursor-pointer rounded-2xl py-2 px-4 ${color} ${textColor}  hover:${hoverTextColor} ${className}`}
       {...props}
     >
       {children}

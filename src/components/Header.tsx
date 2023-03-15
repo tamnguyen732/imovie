@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { headerNav } from '~/utils/common/general';
-import logo from '../assets/imovie.png';
+import Logo from './Logo';
 
 const Header = () => {
   const [index, setIndex] = useState<number>(0);
@@ -26,14 +26,11 @@ const Header = () => {
   }, []);
   return (
     <div
-      className={`cursor-pointer h-24 ${
+      className={`cursor-pointer h-20 ${
         isScrolled ? 'bg-black' : ''
       } fixed flex justify-between items-center z-50 transition-all w-screen `}
     >
-      <div className='w-200 h-auto py-4 pl-2 flex flex-row  justify-start items-center gap-2'>
-        <img className='w-20 h-20 object-cover' src={logo} alt='' />
-        <span className='text-white text-4xl font-bold'>iMovies</span>
-      </div>
+      <Logo className='w-200 h-auto py-4 pl-2 flex flex-row  justify-start items-center gap-2' />
       <ul className=' hidden text-white md:flex  gap-10  mr-10 font-bold text-2xl ml-auto justify-end '>
         {headerNav.map(({ display, path }, i) => {
           return (

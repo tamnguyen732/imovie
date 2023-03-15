@@ -3,7 +3,7 @@ import Button from './Button';
 
 const HeroSlide = () => {
   return (
-    <div className='mb-20'>
+    <div className='mb-40 z-40'>
       {/* <div
         className=' fixed w-full h-screen bg-cover bg-center  bg-node-repeat z-0 '
         style={{
