@@ -1,15 +1,34 @@
 import React from 'react';
 import apiConfig from '~/api/apiConfig';
+import { v4 as uuidv4 } from 'uuid';
 import { TmdbMovie } from '~/utils/types/movieTypes';
+import Button from '../Button';
 interface ListProps {
   list: TmdbMovie;
 }
 
 const Card = ({ list }: ListProps) => {
   const bg = apiConfig.w500Image(list!.poster_path || (list!.backdrop_path as string));
+  console.log(list);
+  const handleDetailMovie = () => {};
   return (
-    <div className=' w-44 lg:w-56 md:w-64 h-72 bg-white  overflow-hidden rounded-3xl flex-1 '>
-      <img src={bg} alt='' />
+    <div className='cursor-pointer'>
+      <div
+        key={uuidv4()}
+        onClick={handleDetailMovie}
+        className='group relative cursor-pointer w-44 lg:w-198px md:w-64 h-72 hover:bg-black bg-white overflow-hidden rounded-3xl flex-1 '
+      >
+        <img
+          className=' w-full h-full hover:brightness-50 transition duration-300 ease-in-out '
+          src={bg}
+          alt='imovies '
+        />
+        <Button className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-14 rounded-full   transform scale-0 group-hover:scale-100 transition duration-300 ease-in-out' />
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  border-solid border-l-white border-l-12px border-y-transparent border-y-8 border-r-0  transform scale-0 group-hover:scale-100 transition duration-300 ease-in-out' />
+      </div>
+      <h2 className='text-white hover:text-hover font-bold mt-2 text-xl z-30'>
+        {list.title ?? list.name}
+      </h2>
     </div>
   );
 };

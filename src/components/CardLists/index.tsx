@@ -1,36 +1,44 @@
 import React from 'react';
 import { Swiper } from 'swiper/react';
+import { v4 as uuidv4 } from 'uuid';
+
 interface CardList<T> {
   lists: T[];
   render: (list: T) => React.ReactNode;
+  slidesPerView: number;
+  breakpoint?: boolean;
 }
 
-const CardList = <T,>({ lists, render }: CardList<T>) => {
+const CardList = <T,>({ lists = [], render, slidesPerView, breakpoint }: CardList<T>) => {
   return (
-    <div className='w-full'>
+    <div className='w-full z-40'>
       <Swiper
-        spaceBetween={5}
-        slidesPerView={2}
+        spaceBetween={2}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: true
+        }}
+        slidesPerView={breakpoint ? 1 : 2}
         breakpoints={{
           // when window width is >= 640px
           640: {
-            slidesPerView: 3,
+            slidesPerView: breakpoint ? 1 : 3,
             spaceBetween: 20
           },
           // when window width is >= 768px
           768: {
-            slidesPerView: 3,
+            slidesPerView: breakpoint ? 1 : 3,
             spaceBetween: 20
           },
           // when window width is >= 1024px
           1024: {
-            slidesPerView: 5,
+            slidesPerView: slidesPerView,
             spaceBetween: 20
           }
         }}
       >
         {lists?.map((list) => {
-          return <>{render(list)}</>;
+          return <div key={uuidv4()}>{render(list)}</div>;
         })}
       </Swiper>
     </div>

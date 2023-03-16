@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import tmdbApi, { Category, MovieType, TvType } from '~/api/tmdbClient';
 import { TmdbMovie } from '~/utils/types/movieTypes';
-
+import { v4 as uuidv4 } from 'uuid';
 type Arg<T extends MovieType | TvType> = {
   cate: Category;
   type: T;
@@ -21,7 +21,10 @@ const useGetLists = <T extends MovieType | TvType>({ cate, type }: Arg<T>) => {
         }
 
         // @ts-ignore
-        const results = response.results as TmdbMovie[];
+        const results = response.results.map((item: TmdbMovie) => ({
+          ...item,
+          _id: uuidv4()
+        })) as TmdbMovie[];
         if (results) setLists(results);
       } catch (error) {
         console.log(error);

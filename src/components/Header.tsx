@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { headerNav } from '~/utils/common/general';
 import Logo from './Logo';
-
+import { v4 as uuidv4 } from 'uuid';
 const Header = () => {
   const [index, setIndex] = useState<number>(0);
   const [isScrolled, setIsScroll] = useState<boolean>(false);
@@ -34,7 +34,7 @@ const Header = () => {
       <ul className=' hidden text-white md:flex  gap-10  mr-10 font-bold text-2xl ml-auto justify-end '>
         {headerNav.map(({ display, path }, i) => {
           return (
-            <div key={i} className='flex flex-col group relative'>
+            <div key={uuidv4()} className='flex flex-col group relative'>
               <li
                 onClick={() => {
                   handleActiveNav(i);

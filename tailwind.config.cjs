@@ -25,7 +25,15 @@ module.exports = {
         '1px': '1px',
         '2px': '2px',
         '3px': '3px',
+        '195px': '195px',
         '400px': '400px'
+      },
+      width: {
+        '198px': '198px',
+        '200px': '200px'
+      },
+      borderWidth: {
+        '12px': '12px'
       }
     }
   },

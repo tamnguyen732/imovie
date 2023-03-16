@@ -1,5 +1,6 @@
 export interface TmdbMovie {
   adult: boolean;
+  name: string;
   backdrop_path: string | null;
   genre_ids: number[];
   id: number;
