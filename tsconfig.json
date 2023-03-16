@@ -26,6 +26,6 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx", "src/api/axiosClient.js"],
+  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx", "src/api/axiosClient.ts"],
   "exclude": ["node_modules"]
 }
