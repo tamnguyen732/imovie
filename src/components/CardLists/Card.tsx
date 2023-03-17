@@ -4,11 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { TmdbMovie } from '~/utils/types/movieTypes';
 import Button from '../Button';
 interface ListProps {
-  list: TmdbMovie;
+  list?: TmdbMovie;
 }
 
 const Card = ({ list }: ListProps) => {
-  const bg = apiConfig.w500Image(list!.poster_path || (list!.backdrop_path as string));
+  const bg = apiConfig.w500Image(list?.poster_path || (list?.backdrop_path as string));
   const handleDetailMovie = () => {};
   return (
     <div className='cursor-pointer'>
@@ -26,7 +26,7 @@ const Card = ({ list }: ListProps) => {
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  border-solid border-l-white border-l-12px border-y-transparent border-y-8 border-r-0  transform scale-0 group-hover:scale-100 transition duration-300 ease-in-out' />
       </div>
       <h2 className='text-white hover:text-hover font-bold mt-2 text-xl z-10'>
-        {list.title ?? list.name}
+        {list?.title ?? list?.name}
       </h2>
     </div>
   );

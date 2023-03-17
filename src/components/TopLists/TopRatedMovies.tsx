@@ -2,7 +2,6 @@ import React from 'react';
 import CardList from '../CardLists';
 import { Category, MovieType, TvType } from '~/api/tmdbClient';
 import { v4 as uuidv4 } from 'uuid';
-
 import { SwiperSlide } from 'swiper/react';
 import Card from '../CardLists/Card';
 import useGetLists from '~/hooks/useGetList';

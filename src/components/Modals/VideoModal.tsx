@@ -5,8 +5,6 @@ interface Props {
 }
 
 const VideoModal = ({ video }: Props) => {
-  console.log(video);
-
   return (
     <div>
       <ModalWrapper>

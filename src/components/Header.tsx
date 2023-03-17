@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { headerNav } from '~/utils/common/general';
 import Logo from './Logo';
 import { v4 as uuidv4 } from 'uuid';
 const Header = () => {
   const [index, setIndex] = useState<number>(0);
+  const navigate = useNavigate();
   const [isScrolled, setIsScroll] = useState<boolean>(false);
-  const handleActiveNav = (index: number) => {
+  const handleActiveNav = (index: number, path: string) => {
+    navigate(`${path}`);
     setIndex(index);
   };
 
@@ -37,7 +39,7 @@ const Header = () => {
             <div key={uuidv4()} className='flex flex-col group relative'>
               <li
                 onClick={() => {
-                  handleActiveNav(i);
+                  handleActiveNav(i, path);
                 }}
                 className={`hover:text-hover hover:transition-all  ${
                   index === i ? 'text-hover' : ''

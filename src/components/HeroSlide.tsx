@@ -11,7 +11,6 @@ interface Props {
 const HeroSlide = ({ list }: Props) => {
   const { modal, openModal } = useGlobalContext();
   const [video, setVideo] = useState<string>('');
-  console.log(video);
   const bg = apiConfig.originalImage(list!.backdrop_path || (list!.poster_path as string));
   const poster = apiConfig.originalImage(list!.poster_path as string);
 

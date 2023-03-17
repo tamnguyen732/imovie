@@ -1,40 +1,45 @@
 import { useEffect, useState } from 'react';
 import tmdbApi, { Category, MovieType, TvType } from '~/api/tmdbClient';
 import { TmdbMovie } from '~/utils/types/movieTypes';
-import { v4 as uuidv4 } from 'uuid';
 type Arg<T extends MovieType | TvType> = {
   cate: Category;
   type: T;
+  query?: string;
+  params?: Category;
 };
 
-const useGetLists = <T extends MovieType | TvType>({ cate, type }: Arg<T>) => {
-  const [lists, setLists] = useState<TmdbMovie[]>();
-  let params = {};
+const useGetLists = <T extends MovieType | TvType>({ cate, type, query, params }: Arg<T>) => {
+  const [lists, setLists] = useState<TmdbMovie[]>([]);
+  const [searchMovies, setSearchMovies] = useState<TmdbMovie[]>([]);
+  const [page, setPage] = useState<number>(1);
   useEffect(() => {
     const fetchLists = async () => {
       let response;
       try {
-        if (cate === Category.MOVIE) {
-          response = await tmdbApi.getMoviesList(type as MovieType, { params });
-        } else if (cate === Category.TV) {
-          response = await tmdbApi.getTvList(type as TvType, { params });
+        if (query) {
+          response = await tmdbApi.search(params as Category, { query, page });
+          // @ts-ignore
+          const newSearchMovies = response.results;
+          setSearchMovies((searchMovies) => [...searchMovies, ...newSearchMovies]);
+        } else {
+          if (cate === Category.MOVIE) {
+            response = await tmdbApi.getMoviesList(type as MovieType, { page });
+          } else if (cate === Category.TV) {
+            response = await tmdbApi.getTvList(type as TvType, { page });
+          }
+          // @ts-ignore
+          const newMovies = response.results;
+          setLists((lists) => [...lists, ...newMovies]);
         }
-
-        // @ts-ignore
-        const results = response.results.map((item: TmdbMovie) => ({
-          ...item,
-          _id: uuidv4()
-        })) as TmdbMovie[];
-        if (results) setLists(results);
       } catch (error) {
         console.log(error);
         return [];
       }
     };
     fetchLists();
-  }, []);
+  }, [page, query, params]);
 
-  return { lists };
+  return { lists, setPage, searchMovies, setSearchMovies };
 };
 
 export default useGetLists;
