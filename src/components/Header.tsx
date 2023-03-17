@@ -28,7 +28,7 @@ const Header = () => {
     <div
       className={`cursor-pointer h-20 ${
         isScrolled ? 'bg-black' : ''
-      } fixed flex justify-between items-center z-50 transition-all w-screen `}
+      } fixed flex justify-between items-center z-30 transition-all w-screen `}
     >
       <Logo className='w-200 h-auto py-4 pl-2 flex flex-row  justify-start items-center gap-2' />
       <ul className=' hidden text-white md:flex  gap-10  mr-10 font-bold text-2xl ml-auto justify-end '>

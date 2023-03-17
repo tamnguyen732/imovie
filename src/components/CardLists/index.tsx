@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper } from 'swiper/react';
 import { v4 as uuidv4 } from 'uuid';
+import { useGlobalContext } from '~/contexts/ModalContext';
 
 interface CardList<T> {
   lists: T[];
@@ -10,10 +11,13 @@ interface CardList<T> {
 }
 
 const CardList = <T,>({ lists = [], render, slidesPerView, breakpoint }: CardList<T>) => {
+  const { modal } = useGlobalContext();
   return (
-    <div className='w-full z-40'>
+    <div className='w-full z-20'>
       <Swiper
-        spaceBetween={2}
+        allowSlideNext={modal !== 'open'}
+        allowSlidePrev={modal !== 'open'}
+        spaceBetween={5}
         autoplay={{
           delay: 1000,
           disableOnInteraction: true

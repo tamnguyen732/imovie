@@ -24,7 +24,7 @@ type Params = AxiosRequestConfig['params'];
 interface TmdbApi {
   getMoviesList(type: MovieType, params?: Params): AxiosPromise;
   getTvList(type: TvType, params?: Params): AxiosPromise;
-  getVideos(cate: Category, id: string): AxiosPromise;
+  getVideos(cate: Category, id: number): AxiosPromise;
   search(cate: Category, params?: Params): AxiosPromise;
   detail(cate: Category, id: string, params?: Params): AxiosPromise;
   credits(cate: Category, id: string): AxiosPromise;

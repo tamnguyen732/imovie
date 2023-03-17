@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import apiConfig from '~/api/apiConfig';
+import tmdbApi, { Category } from '~/api/tmdbClient';
+import { useGlobalContext } from '~/contexts/ModalContext';
 import { TmdbMovie } from '~/utils/types/movieTypes';
 import Button from './Button';
-
+import VideoModal from './Modals/VideoModal';
 interface Props {
   list: TmdbMovie;
 }
 const HeroSlide = ({ list }: Props) => {
+  const { modal, openModal } = useGlobalContext();
+  const [video, setVideo] = useState<string>('');
+  console.log(video);
   const bg = apiConfig.originalImage(list!.backdrop_path || (list!.poster_path as string));
   const poster = apiConfig.originalImage(list!.poster_path as string);
+
+  useEffect(() => {
+    const getVideo = async () => {
+      try {
+        const videos = await tmdbApi.getVideos(Category.MOVIE, list.id);
+        // @ts-ignore
+        const results = videos.results;
+        if (results) {
+          // @ts-ignore
+          const videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
+          if (videSrc) {
+            setVideo(videSrc);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getVideo();
+  }, [modal]);
+  const handleOpenModal = () => {
+    openModal();
+  };
 
   const checkTextLength = () => {
     if (list.overview.length < 155) {
@@ -37,17 +66,19 @@ const HeroSlide = ({ list }: Props) => {
               Watch Now
             </Button>
             <Button
+              onClick={handleOpenModal}
               color='bg-transparent '
               className='outline outline-white hover:bg-white font-semibold text-2xl'
               hoverTextColor='text-hover'
             >
-              Watch Later
+              Watch Trailer
             </Button>
           </div>
         </div>
         <div className='w-2/4 hidden md:block'>
           <img className='w-80 h-400px rounded-xl object-cover' src={poster} alt='' />
         </div>
+        {modal === 'open' && <VideoModal video={video} />}
       </div>
     </div>
   );

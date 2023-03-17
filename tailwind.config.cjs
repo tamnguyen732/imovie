@@ -26,14 +26,30 @@ module.exports = {
         '2px': '2px',
         '3px': '3px',
         '195px': '195px',
+        '400px': '400px',
         '400px': '400px'
       },
       width: {
-        '198px': '198px',
-        '200px': '200px'
+        '195px': '195px',
+        '600px': '600px'
       },
       borderWidth: {
         '12px': '12px'
+      },
+      animation: {
+        zoomIn: 'zoomIn 250ms ease'
+      },
+      keyframes: {
+        zoomIn: {
+          from: {
+            opacity: 0,
+            transform: 'scale(0.85)'
+          },
+          to: {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        }
       }
     }
   },

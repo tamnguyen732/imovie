@@ -8,6 +8,7 @@ import useGetLists from '~/hooks/useGetList';
 import MainLayout from '~/layout/MainLayout';
 import { TmdbMovie } from '~/utils/types/movieTypes';
 import { v4 as uuidv4 } from 'uuid';
+
 const Home = () => {
   const { lists } = useGetLists<MovieType | TvType>({
     cate: Category.MOVIE,
