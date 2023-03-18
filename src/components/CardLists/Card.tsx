@@ -3,15 +3,20 @@ import apiConfig from '~/api/apiConfig';
 import { v4 as uuidv4 } from 'uuid';
 import { TmdbMovie } from '~/utils/types/movieTypes';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
+import { Category } from '~/api/tmdbClient';
 interface ListProps {
   list?: TmdbMovie;
+  category: Category;
 }
 
-const Card = ({ list }: ListProps) => {
+const Card = ({ list, category }: ListProps) => {
   const bg = apiConfig.w500Image(list?.poster_path || (list?.backdrop_path as string));
-  const handleDetailMovie = () => {};
+  const handleDetailMovie = () => {
+    console.log(list, category);
+  };
   return (
-    <div className='cursor-pointer'>
+    <Link to={`/${category}/${list?.id}`} className='cursor-pointer'>
       <div
         key={uuidv4()}
         onClick={handleDetailMovie}
@@ -28,7 +33,7 @@ const Card = ({ list }: ListProps) => {
       <h2 className='text-white hover:text-hover font-bold mt-2 text-xl z-10'>
         {list?.title ?? list?.name}
       </h2>
-    </div>
+    </Link>
   );
 };
 

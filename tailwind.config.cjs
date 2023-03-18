@@ -27,10 +27,11 @@ module.exports = {
         '3px': '3px',
         '195px': '195px',
         '400px': '400px',
-        '400px': '400px'
+        '550px': '550px'
       },
       width: {
         '195px': '195px',
+        '350px': '350px',
         '600px': '600px'
       },
       borderWidth: {

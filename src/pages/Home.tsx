@@ -26,7 +26,7 @@ const Home = () => {
             render={(list) => {
               return (
                 <SwiperSlide key={uuidv4()}>
-                  <HeroSlide list={list} />
+                  <HeroSlide list={list} category={Category.MOVIE} />
                 </SwiperSlide>
               );
             }}

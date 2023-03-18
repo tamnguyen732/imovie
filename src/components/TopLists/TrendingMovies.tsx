@@ -21,7 +21,7 @@ const TrendingMovies = () => {
         render={(list) => {
           return (
             <SwiperSlide key={uuidv4()}>
-              <Card list={list} />
+              <Card list={list} category={Category.MOVIE} />
             </SwiperSlide>
           );
         }}

@@ -7,13 +7,14 @@ import Button from './Button';
 import VideoModal from './Modals/VideoModal';
 interface Props {
   list: TmdbMovie;
+  category: Category;
 }
 const HeroSlide = ({ list }: Props) => {
   const { modal, openModal } = useGlobalContext();
   const [video, setVideo] = useState<string>('');
   const bg = apiConfig.originalImage(list!.backdrop_path || (list!.poster_path as string));
   const poster = apiConfig.originalImage(list!.poster_path as string);
-
+  console.log(video);
   useEffect(() => {
     const getVideo = async () => {
       try {

@@ -21,7 +21,7 @@ const TrendingTv = () => {
         render={(list) => {
           return (
             <SwiperSlide key={uuidv4()}>
-              <Card list={list} />
+              <Card list={list} category={Category.TV} />
             </SwiperSlide>
           );
         }}

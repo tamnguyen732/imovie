@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '~/components/Button';
 import Card from '~/components/CardLists/Card';
@@ -13,7 +13,9 @@ const Catalog = () => {
 
   const navigate = useNavigate();
   const { category, keyword } = useParams();
-  const { lists, setPage, searchMovies, setSearchMovies } = useGetLists<MovieType | TvType>({
+  const { lists, setPage, setLists, searchMovies, setSearchMovies, loading } = useGetLists<
+    MovieType | TvType
+  >({
     cate: category === 'movie' ? Category.MOVIE : Category.TV,
     type: category === 'movie' ? MovieType.UPCOMING : TvType.POPULAR,
     query,
@@ -23,6 +25,9 @@ const Catalog = () => {
     const value = e.target.value;
     setValue(value);
   };
+  useEffect(() => {
+    setLists([]);
+  }, [category]);
 
   const searchMovie = async () => {
     navigate(`/${category}/search/${value}`);
@@ -36,7 +41,7 @@ const Catalog = () => {
       <div className='w-full h-auto z-10 py-32 '>
         <div className='flex flex-col gap-10'>
           <h2 className='text-center text-white font-semibold text-2xl'>
-            {`${category!.charAt(0).toUpperCase()}${category!.slice(1)}`}
+            {category === 'movie' ? 'Movies' : 'Tv Series'}
           </h2>
           <div className='flex gap-2 pl-10'>
             <input
@@ -56,21 +61,21 @@ const Catalog = () => {
           <div className='grid grid-cols-6 gap-y-5 px-3'>
             {keyword
               ? searchMovies?.map((movie) => {
-                  return <Card key={uuidv4()} list={movie} />;
+                  return <Card key={uuidv4()} list={movie} category={category as Category} />;
                 })
               : lists?.map((list) => {
-                  return <Card key={uuidv4()} list={list} />;
+                  return <Card key={uuidv4()} list={list} category={category as Category} />;
                 })}
           </div>
 
-          {searchMovies.length || lists.length ? (
+          {!loading && (
             <Button
               onClick={() => setPage((prev) => prev + 1)}
               className='w-44 block ml-auto mr-auto hover:bg-red-600'
             >
               Load More
             </Button>
-          ) : null}
+          )}
         </div>
       </div>
     </MainLayout>
