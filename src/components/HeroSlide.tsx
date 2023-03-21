@@ -23,7 +23,7 @@ const HeroSlide = ({ list }: Props) => {
         const results = videos.results;
         if (results) {
           // @ts-ignore
-          const videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
+          const videSrc = 'https://www.youtube.com/embed/' + videos?.results[0]?.key;
           if (videSrc) {
             setVideo(videSrc);
           }

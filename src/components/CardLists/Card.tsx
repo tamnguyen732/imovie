@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import apiConfig from '~/api/apiConfig';
 import { v4 as uuidv4 } from 'uuid';
 import { TmdbMovie } from '~/utils/types/movieTypes';
@@ -11,15 +11,15 @@ interface ListProps {
 }
 
 const Card = ({ list, category }: ListProps) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   const bg = apiConfig.w500Image(list?.poster_path || (list?.backdrop_path as string));
-  const handleDetailMovie = () => {
-    console.log(list, category);
-  };
+
   return (
     <Link to={`/${category}/${list?.id}`} className='cursor-pointer'>
       <div
         key={uuidv4()}
-        onClick={handleDetailMovie}
         className='z-20 group relative cursor-pointer w-44 lg:w-195px md:w-64 h-72 hover:bg-black bg-white overflow-hidden rounded-3xl flex-1 '
       >
         <img
