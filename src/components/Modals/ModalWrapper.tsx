@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ModalWrapper = ({ children }: Props) => {
-  const { closeModal } = useGlobalContext();
+  const  {closeModal} = useGlobalContext()
   useEffect(() => {
     document.body.classList.add('overflow-y-hidden');
     return () => {
@@ -14,9 +14,7 @@ const ModalWrapper = ({ children }: Props) => {
     };
   }, []);
 
-  const handleCloseModal = () => {
-    closeModal();
-  };
+ 
 
   return (
     <div>
@@ -25,7 +23,7 @@ const ModalWrapper = ({ children }: Props) => {
           <div className='flex items-center justify-center min-h-screen  px-4 -mt-5 text-center sm:block sm:p-0 '>
             <div className='fixed inset-0 transition-opacity' aria-hidden='true'>
               <div
-                onClick={handleCloseModal}
+                onClick={()=> closeModal()}
                 className='z-50 absolute inset-0 bg-gray-500 opacity-75'
               ></div>
             </div>
