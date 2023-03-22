@@ -39,7 +39,7 @@ const Catalog = () => {
 
   return (
     <MainLayout>
-      <div className='w-full h-auto z-10 py-32 '>
+      <div className='w-full h-auto z-10 py-32 overflow-x-hidden'>
         <div className='flex flex-col gap-10'>
           <h2 className='text-center text-white font-semibold text-2xl'>
             {category === 'movie' ? 'Movies' : 'Tv Series'}

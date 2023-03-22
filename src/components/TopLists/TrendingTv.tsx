@@ -13,7 +13,7 @@ const TrendingTv = () => {
   });
 
   return (
-    <div className='px-2 lg:px-10 md:px-10 w-full'>
+    <div className='px-2  md:px-10 w-full'>
       <h2 className='font-bold text-3xl mb-4'>Top Rated Tv</h2>
       <CardList
         lists={lists as TmdbMovie[]}

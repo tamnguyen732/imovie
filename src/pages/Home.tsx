@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <MainLayout>
-      <div className='text-white w-full h-auto z-20 flex flex-col '>
+      <div className='text-white w-full h-auto z-20 flex flex-col'>
         {
           <CardList
             lists={lists?.slice(3, 7) as TmdbMovie[]}
