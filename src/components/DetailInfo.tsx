@@ -19,20 +19,14 @@ const DetailInfo = () => {
   });
 
   const { cast } = useGetMoviesById({ ...args, type: dataType.CREDIT });
-  const bg = apiConfig.w500Image(data?.poster_path || (data?.backdrop_path as string));
+  const bg = apiConfig.originalImage(data?.poster_path || (data?.backdrop_path as string));
 
   return (
     <div className='z-20'>
       {!loading ? (
         <>
-          <div
-            className=' fixed w-full h-auto bg-cover bg-center bg-no-repeat z-0 '
-            style={{
-              backgroundImage: `url(${bg})`
-            }}
-          ></div>
-          <div className='flex  mt-28 ml-10 justify-center items-start gap-6 z-20'>
-            <img className='w-350px h-550px rounded-2xl object-cover ' src={bg} alt='' />
+          <div className='flex flex-col pl-5 lg:flex-row md:flex-row mt-28 lg:ml-10 md:ml-10 justify-center items-start gap-6 z-20'>
+            <img className='w-350px h-550px rounded-2xl mb-5  object-cover ' src={bg} alt='' />
 
             <div className='flex flex-col gap-5'>
               <div className='flex flex-col gap-5'>
@@ -46,7 +40,7 @@ const DetailInfo = () => {
                     );
                   })}
                 </div>
-                <p className='text-white'>{data?.overview}</p>
+                <p className='text-white text-2xl'>{data?.overview}</p>
               </div>
               <div className='flex flex-col gap-1'>
                 <h2 className='text-white text-lg font-bold'>Casts</h2>

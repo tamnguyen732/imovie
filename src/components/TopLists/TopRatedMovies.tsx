@@ -13,7 +13,7 @@ const TopRatedMovies = () => {
   });
 
   return (
-    <div className='pt-10  px-10 w-full'>
+    <div className='pt-10 px-2  lg:px-10 md:px-10 w-full'>
       <h2 className='font-bold  text-3xl mb-4'>Top Rated Movies</h2>
       <CardList
         lists={lists as TmdbMovie[]}

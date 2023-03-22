@@ -30,14 +30,13 @@ const useGetLists = <T extends MovieType | TvType>({
   useEffect(() => {
     const fetchLists = async () => {
       let response;
+      setLoading(true);
       try {
         if (query) {
-          setLoading(true);
           response = await tmdbApi.search(params as Category, { query, page });
           // @ts-ignore
           const newSearchMovies = response.results;
           setSearchMovies((searchMovies) => [...searchMovies, ...newSearchMovies]);
-          setLoading(false);
         } else {
           if (cate === Category.MOVIE) {
             response = await tmdbApi.getMoviesList(type as MovieType, { page });
@@ -52,6 +51,8 @@ const useGetLists = <T extends MovieType | TvType>({
       } catch (error) {
         console.log(error);
         return [];
+      } finally {
+        setLoading(false);
       }
     };
     fetchLists();

@@ -6,6 +6,7 @@ import useGetLists from '~/hooks/useGetList';
 import MainLayout from '~/layout/MainLayout';
 import { v4 as uuidv4 } from 'uuid';
 import { Category, MovieType, TvType } from '~/api/tmdbClient';
+import Loading from '~/components/Loading';
 
 const Catalog = () => {
   const [value, setValue] = useState<string>('');
@@ -58,7 +59,7 @@ const Catalog = () => {
               Keyword
             </Button>
           </div>
-          <div className='grid grid-cols-6 gap-y-5 px-3'>
+          <div className='grid grid-cols-2 lg:grid-cols-6 md:grid-cols-3 gap-y-5 px-3'>
             {keyword
               ? searchMovies?.map((movie) => {
                   return <Card key={uuidv4()} list={movie} category={category as Category} />;
@@ -67,7 +68,7 @@ const Catalog = () => {
                   return <Card key={uuidv4()} list={list} category={category as Category} />;
                 })}
           </div>
-
+          {loading && <Loading />}
           {!loading && (
             <Button
               onClick={() => setPage((prev) => prev + 1)}

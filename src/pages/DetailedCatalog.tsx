@@ -29,16 +29,15 @@ const DetailedCatalog = () => {
     }
   }, [loading, listLoading]);
 
-  console.log('render');
   return (
     <MainLayout>
-      <div className='z-20 flex flex-col gap-10 h-auto'>
+      <div className='z-20 flex flex-col  h-auto '>
         <DetailInfo />
         {!loading && (
-          <div className='flex flex-col gap-5 px-4'>
+          <div className='flex flex-col gap-5 px-4 py-5 bg-black '>
             {video.slice(0, 3).map(({ name, key }) => {
               return (
-                <div key={key} className='w-full '>
+                <div key={key} className='w-full h-auto'>
                   <h2 className='text-2xl font-bold text-white mb-2'>{name}</h2>
                   <iframe
                     className='w-full h-screen'
@@ -49,19 +48,20 @@ const DetailedCatalog = () => {
             })}
           </div>
         )}
-
-        <h2 className='text-2xl font-bold text-white mb-2 px-4'>Similar</h2>
-        <CardList
-          lists={lists}
-          slidesPerView={6}
-          render={(list) => {
-            return (
-              <SwiperSlide key={uuidv4()}>
-                <Card list={list} category={category as Category} />
-              </SwiperSlide>
-            );
-          }}
-        />
+        <div className='bg-black'>
+          <h2 className='text-2xl font-bold text-white mb-2 px-4 py-0'>Similar</h2>
+          <CardList
+            lists={lists}
+            slidesPerView={6}
+            render={(list) => {
+              return (
+                <SwiperSlide key={uuidv4()}>
+                  <Card list={list} category={category as Category} />
+                </SwiperSlide>
+              );
+            }}
+          />
+        </div>
       </div>
     </MainLayout>
   );

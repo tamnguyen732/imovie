@@ -17,7 +17,7 @@ const CardList = <T,>({ lists = [], render, slidesPerView, breakpoint }: CardLis
       <Swiper
         allowSlideNext={modal !== 'open'}
         allowSlidePrev={modal !== 'open'}
-        spaceBetween={5}
+        spaceBetween={10}
         autoplay={{
           delay: 1000,
           disableOnInteraction: true
@@ -26,7 +26,7 @@ const CardList = <T,>({ lists = [], render, slidesPerView, breakpoint }: CardLis
         breakpoints={{
           // when window width is >= 640px
           640: {
-            slidesPerView: breakpoint ? 1 : 3,
+            slidesPerView: breakpoint ? 1 : 2,
             spaceBetween: 20
           },
           // when window width is >= 768px
